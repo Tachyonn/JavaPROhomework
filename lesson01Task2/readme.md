@@ -3,10 +3,13 @@
 который сохранит поле класса TextContainer в указанный файл.
 
 @SaveTo(path=“c:\\file.txt”)
+
 class Container {
+
 String text = “…”;
 
 @Saver
+
 public void save(..) {…}
 
 }
