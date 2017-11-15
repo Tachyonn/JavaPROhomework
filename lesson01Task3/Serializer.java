@@ -27,14 +27,10 @@ public class Serializer {
         String filename = basePath + prefix + tClass.getName() + fileExtension;
         try {
             return readObject(loadProperties(filename), tClass);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (NoSuchFieldException e) {
+        } catch (IllegalAccessException | InstantiationException | NoSuchFieldException e) {
             e.printStackTrace();
         }
-        throw new UnsupportedOperationException("Deserialization Failure!");
+        throw new UnsupportedOperationException("Deserialization Failed!");
     }
 
     private Properties writeObject(Object tInstance) throws IllegalAccessException {
