@@ -10,12 +10,20 @@ import java.util.Objects;
 import java.util.Properties;
 
 public class Serializer {
-    private final String basePath = "src/JavaPROsrc/lesson01Task3/";
-    private final String prefix = "sz_";
-    private final String fileExtension = ".txt";
+    private final String BASE_PATH = "src/JavaPROsrc/lesson01Task3/";
+    private final String PREFIX = "sz_";
+    private final String FILE_EXTENSION = ".txt";
 
     public void serialize(Object tInstance) {
-        String filename = basePath + prefix + tInstance.getClass().getName() + fileExtension;
+        String filename = BASE_PATH + PREFIX + tInstance.getClass().getName() + FILE_EXTENSION;
+        try {
+            saveProperties(writeObject(tInstance), filename);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void serialize(Object tInstance, String filename) {
         try {
             saveProperties(writeObject(tInstance), filename);
         } catch (IllegalAccessException e) {
@@ -24,7 +32,16 @@ public class Serializer {
     }
 
     public <T> T deserialize(Class<T> tClass) {
-        String filename = basePath + prefix + tClass.getName() + fileExtension;
+        String filename = BASE_PATH + PREFIX + tClass.getName() + FILE_EXTENSION;
+        try {
+            return readObject(loadProperties(filename), tClass);
+        } catch (IllegalAccessException | InstantiationException | NoSuchFieldException e) {
+            e.printStackTrace();
+        }
+        throw new UnsupportedOperationException("Deserialization Failed!");
+    }
+
+    public <T> T deserialize(Class<T> tClass, String filename) {
         try {
             return readObject(loadProperties(filename), tClass);
         } catch (IllegalAccessException | InstantiationException | NoSuchFieldException e) {
