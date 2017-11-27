@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Questionnaire</title>
+</head>
+<body>
+<h2>Quiz 1</h2>
+<form action="sendresults" method="post">
+    <p><b>Please, enter your name</b></p>
+    <p><input type="text" name="username" maxlength="25" size="40" value="here"></p>
+    <p><input type="text" name="age"></p>
+    &nbsp;
+    <p><b>Which application server do you prefer?</b></p>
+    <p><input name="appsrv" type="radio" value="Q1Tomcat" checked> Tomcat</p>
+    <p><input name="appsrv" type="radio" value="Q1JBoss"> JBoss</p>
+    <p><input name="appsrv" type="radio" value="Q1GlassFish"> GlassFish</p>
+    &nbsp;
+    <p><b>Which method you should use to send data to server?</b></p>
+    <p><input name="usemethod" type="radio" value="Q2Post" checked> POST</p>
+    <p><input name="usemethod" type="radio" value="Q2Get"> GET</p>
+    <p><input name="usemethod" type="radio" value="Q2Trace"> TRACE</p>
+    &nbsp;
+    <p><input type="submit" value="Send results"></p>
+</form>
+</body>
+</html>
