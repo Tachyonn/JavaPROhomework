@@ -50,7 +50,7 @@ public class AbstractDAO<T> {
 
     public void update(T tInstance) {
         String query = updateQuery(tInstance);
-        execQuery(query,"Updated.");
+        execQuery(query, "Updated.");
     }
 
     private String updateQuery(T tInstance) {
@@ -78,18 +78,7 @@ public class AbstractDAO<T> {
             throw new RuntimeException(e);
         }
         query.deleteCharAt(query.length() - 1);
-        query.append(" WHERE ")
-                .append(primaryKeyField)
-                .append("=");
-        try {
-            Field primaryKeyValue = cls.getDeclaredField(primaryKeyField);
-            primaryKeyValue.setAccessible(true);
-            query.append(primaryKeyValue.get(tInstance).toString());
-        } catch (NoSuchFieldException | IllegalAccessException e) {
-            e.printStackTrace();
-        }
-
-        return query.toString();
+        return primaryKeyFieldQuery(tInstance, query);
     }
 
     private String getTablePrimaryKeyField() {
@@ -112,24 +101,25 @@ public class AbstractDAO<T> {
     }
 
     private String delQuery(T tInstance) {
-        //DELETE FROM table where col1='val1' AND col2='val2' AND .. colN='valN'
+        //DELETE FROM table where PKColumnName=PKFieldValue
         StringBuilder query = new StringBuilder();
-        query.append("DELETE FROM ").append(table).append(" WHERE ");
+        query.append("DELETE FROM ").append(table);
+        return primaryKeyFieldQuery(tInstance, query);
+    }
+
+    private String primaryKeyFieldQuery(T tInstance, StringBuilder query) {
+        String primaryKeyFieldName = getTablePrimaryKeyField();
         Class<?> cls = tInstance.getClass();
-        Field[] fields = cls.getDeclaredFields();
+        query.append(" WHERE ")
+                .append(primaryKeyFieldName)
+                .append("=");
         try {
-            for (Field field : fields) {
-                field.setAccessible(true);
-                query.append(field.getName())
-                        .append("='")
-                        .append(field.get(tInstance).toString())
-                        .append("'")
-                        .append(" AND ");
-            }
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
+            Field primaryKeyValue = cls.getDeclaredField(primaryKeyFieldName);
+            primaryKeyValue.setAccessible(true);
+            query.append(primaryKeyValue.get(tInstance).toString());
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
         }
-        query.delete(query.length() - 5, query.length());
         return query.toString();
     }
 
