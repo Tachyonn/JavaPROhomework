@@ -1,2 +1,2 @@
 # JavaPROhomework
-My homework on JavaPro course
+My homework on JavaPro course in prog.kiev.ua
