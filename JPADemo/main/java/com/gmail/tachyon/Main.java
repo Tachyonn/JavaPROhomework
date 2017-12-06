@@ -1,5 +1,6 @@
 package com.gmail.tachyon;
 
+import com.gmail.tachyon.DAO.MenuDAOImpl;
 import com.gmail.tachyon.Entity.Dish;
 
 import javax.persistence.EntityManager;
@@ -11,7 +12,7 @@ public class Main {
     public static void main(String[] args) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("JPADemo");
         EntityManager em = emf.createEntityManager();
-        MenuSelection ms = new MenuSelection(em);
+        MenuDAOImpl ms = new MenuDAOImpl(em);
 
         insertValues(ms);
 
@@ -35,7 +36,7 @@ public class Main {
         }
     }
 
-    public static void insertValues(MenuSelection ms) {
+    public static void insertValues(MenuDAOImpl ms) {
         Dish dish1 = new Dish();
         dish1.setName("Olivye");
         dish1.setPrice(30.0d);
