@@ -1,0 +1,44 @@
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+    <display-name>Archetype Created Web Application</display-name>
+    <listener>
+        <listener-class>
+            ua.kiev.prog.MyAppServletContextListener
+        </listener-class>
+    </listener>
+
+    <servlet>
+        <servlet-name>DbServler</servlet-name>
+        <servlet-class>ua.kiev.prog.DbServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DbServler</servlet-name>
+        <url-pattern>/test</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>AddServlet</servlet-name>
+        <servlet-class>ua.kiev.prog.AddServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddServlet</servlet-name>
+        <url-pattern>/add</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>GetServlet</servlet-name>
+        <servlet-class>ua.kiev.prog.GetServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetServlet</servlet-name>
+        <url-pattern>/get</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>DeleteServlet</servlet-name>
+        <servlet-class>ua.kiev.prog.DeleteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteServlet</servlet-name>
+        <url-pattern>/del</url-pattern>
+    </servlet-mapping>
+</web-app>
