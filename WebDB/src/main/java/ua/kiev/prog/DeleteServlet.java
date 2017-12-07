@@ -25,9 +25,9 @@ public class DeleteServlet extends HttpServlet {
         resp.setContentType("text/html");
 
         String[] ids = req.getParameterValues("toDelete");
-        if (ids.length == 0) {
+        if (ids == null) {
             pw.println("No checkboxes were selected!");
-            pw.println("<p><a href=\"/\">Go back</a></p>");
+            pw.println("<p><a href=\"/get\">Go back</a></p>");
             return;
         }
         for (int i = 0; i < ids.length; i++) {
