@@ -20,16 +20,6 @@ public class ContactService {
     }
 
     @Transactional
-    public void updateContact(Contact contact) {
-        contactRepository.save(contact);
-    }
-
-    @Transactional
-    public void updateGroup(Group group) {
-        groupRepository.save(group);
-    }
-
-    @Transactional
     public void addGroup(Group group) {
         groupRepository.save(group);
     }
