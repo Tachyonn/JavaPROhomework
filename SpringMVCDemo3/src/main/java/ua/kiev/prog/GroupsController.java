@@ -54,10 +54,8 @@ public class GroupsController {
                 List<Contact> contacts = contactService.findByGroup(group);
                 for (Contact contact : contacts) {
                     contact.setGroup(null); // разрываем связи
-                    contactService.updateContact(contact);
                 }
                 group.setContacts(null); // разрываем связи
-                contactService.updateGroup(group);
                 contactService.deleteGroup(group);
             }
         return new ResponseEntity<>(HttpStatus.OK);
