@@ -41,11 +41,11 @@
             <tr>
                 <th scope="row"><input type="checkbox"
                                        name="toDelete[]"
-                                       value="${item.getId()}"
-                                       id="checkbox_${item.getId()}"/>
+                                       value="${item.id}"
+                                       id="checkbox_${item.id}"/>
                 </th>
-                <td>${item.getLogin()}</td>
-                <td>${item.getRole()}</td>
+                <td>${item.login}</td>
+                <td>${item.role}</td>
             </tr>
         </c:forEach>
         </tbody>
